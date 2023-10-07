@@ -17,12 +17,16 @@ const Shop = () => {
             });
     }, []);
 
+    const handleAddProduct = (product)=>{
+        console.log(product)
+    }
+
     return (
         <div className='shop-container'>
             <div className="product-container">
 
                 {
-                    products.map(pd => <Product product={pd}></Product>)
+                    products.map(pd => <Product handleAddProduct={handleAddProduct} product={pd}></Product>)
                 }
 
             </div>
