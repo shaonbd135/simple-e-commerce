@@ -13,6 +13,8 @@
 .product-name{
     color: blue;
     font-weight: 400;
+    
+    
 }
 
 .main-button{
@@ -23,3 +25,5 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+

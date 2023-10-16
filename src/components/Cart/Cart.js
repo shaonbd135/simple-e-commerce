@@ -21,7 +21,7 @@ const Cart = (props) => {
     else if (total > 100) {
         shipping = 4.99;
     }
-    
+
     else if (total === 0) {
         shipping = 0;
     }
@@ -36,11 +36,11 @@ const Cart = (props) => {
     return (
         <div>
             <h4>Order Summery</h4>
-            <p>Items Ordered: {cart.length} </p>
-            <p>Product Price:${total}</p>
+            <p>Items Ordered : {cart.length}</p>
+            <p>Product Price :${total}</p>
             <p>Shipping Cost :${shipping}</p>
-            <p>Tax:${tax}</p>
-            <p>Total Price:${grandTotal} </p>
+            <p>Tax           :${tax}</p>
+            <p>Total Price   :${grandTotal} </p>
         </div>
     );
 };
