@@ -24,7 +24,7 @@ function App() {
           <Route path='/review' element={<Review />} />
           <Route path='/inventory' element={<Inventory />} />
           <Route path='/' element={<Shop />} />
-          <Route path='/product/:productKey' element={<ProductDetails/>}/>
+          <Route path='/product/:productKey' element={<ProductDetails />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>

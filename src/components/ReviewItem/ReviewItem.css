@@ -1,0 +1,8 @@
+.review-item{
+    border: 1px solid lightgray;
+    padding: 10px;
+    margin-left: 200px;
+    margin-right: 200px;
+    box-shadow: 5px 5px 20px lightgray;
+    margin-bottom: 10px;
+}
