@@ -3,9 +3,9 @@ import './ReviewItem.css';
 
 const ReviewItem = (props) => {
 
-    console.log(props.product)
+    
 
-    const {name,price,quantity,img}=props.product
+    const {name,price,quantity,img,key}=props.product
 
 
    
@@ -15,10 +15,10 @@ const ReviewItem = (props) => {
             <img style={{width:'150px'}} src={img} alt="" />
             <h4 className='product-name'>Review Items Name: {name}</h4>
             <p>Unit Price: {price}</p>
-            <p>Quantity: {quantity}</p>
+            <p>Quantity: {quantity} </p>
             <p>Total Price: {price * quantity}</p>
             <br />
-            <button className='main-button'>Remove Item</button>
+            <button onClick={ () => props.removeProduct(key)} className='main-button'>Remove Item</button>
         </div>
 
     );

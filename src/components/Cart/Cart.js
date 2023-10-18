@@ -6,11 +6,12 @@ const Cart = (props) => {
     const cart = props.cart;
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
-        let product = (cart[i].price).toFixed(2);
+        let product = (cart[i].price * cart[i].quantity).toFixed(2);
         product = parseFloat(product);
         total = (total + product).toFixed(2);
         total = parseFloat(total);
     }
+    
 
     let shipping = (12.99).toFixed(2);
     shipping = parseFloat(shipping);
@@ -43,10 +44,12 @@ const Cart = (props) => {
             <p>Tax           :${tax}</p>
             <p>Total Price   :${grandTotal} </p>
             <br />
-            <Link to='/review'><button className='main-button'>Review Order</button></Link>
-            
+            {
+                props.showReviewOrder && <Link to='/review'><button className='main-button'>Review Order</button></Link>
+            }
+
         </div>
-       
+
     );
 };
 
