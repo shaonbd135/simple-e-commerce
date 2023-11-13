@@ -12,6 +12,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Login from './components/Login/Login';
+import Shipment from './components/Shipment/Shipment';
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
           <Route path='/inventory' element={<Inventory />} />
           <Route path='/' element={<Shop />} />
           <Route path='/product/:productKey' element={<ProductDetails />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/shipment' element={<Shipment />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>

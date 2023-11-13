@@ -5,17 +5,24 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 import './Review.css'
 import Cart from '../Cart/Cart';
 import happyImage from '../../images/giphy.gif'
+import { useNavigate } from 'react-router-dom';
 
 const Review = () => {
     const [cart, setCart] = useState([]);
     const [orderPlace, setOrderPlace] = useState(false);
 
-    const handlePlaseOrder = () => {
-        setCart([]);
-        setOrderPlace(true)
-        clearTheCart();
+
+    const navigate = useNavigate();
+
+    // procedure for proceed checkout
+    const handleProceedCheckout = () => {
+        // setCart([]);
+        // setOrderPlace(true)
+        // clearTheCart();
+        navigate('/shipment');
     }
 
+    // remove product
     const removeProduct = (productKey) => {
         const newCart = cart.filter(pd => pd.key !== productKey);
         setCart(newCart);
@@ -37,6 +44,8 @@ const Review = () => {
         setCart(cartProducts);
 
     }, []);
+
+    
 
     let thankYou;
     let thankYouMsg;
@@ -69,7 +78,7 @@ const Review = () => {
             <div className="cart-container2">
                 <Cart showReviewOrder={false} cart={cart}></Cart>
                 {
-                    cart.length > 0 ? <button onClick={handlePlaseOrder} className='main-button'>Place Order</button> : ""
+                    cart.length > 0 ? <button onClick={handleProceedCheckout} className='main-button'>Proceed To Checkout</button> : ""
                 }
             </div>
         </div>
