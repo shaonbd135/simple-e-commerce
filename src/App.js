@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { createContext, useState } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Shop from './components/Shop/Shop';
@@ -14,13 +14,20 @@ import {
 } from "react-router-dom";
 import Login from './components/Login/Login';
 import Shipment from './components/Shipment/Shipment';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Profile from './components/Profile/Profile';
+
+//create context for user
+export const UserContext = createContext();
 
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({});
   return (
-    <div>
-      <Header></Header>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+
       <Router>
+        <Header></Header>
         <Routes>
           <Route path="/shop" element={<Shop />} />
           <Route path='/review' element={<Review />} />
@@ -28,11 +35,16 @@ function App() {
           <Route path='/' element={<Shop />} />
           <Route path='/product/:productKey' element={<ProductDetails />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/shipment' element={<Shipment />} />
+          <Route path='/profile' element={<Profile />} />
+          {/* <Route path='/shipment' element={<Shipment />} /> */}
+          <Route path='/shipment' element={<PrivateRoute>
+            <Shipment />
+          </PrivateRoute>} />
+          
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>
-    </div>
+    </UserContext.Provider>
   );
 }
 

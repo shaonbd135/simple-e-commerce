@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, updateProfile } from "firebase/auth";
 import firebaseConfig from './firebase.config';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { UserContext } from '../../App';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 //  web app's Firebase configuration
@@ -22,6 +24,18 @@ const Login = () => {
         error: '',
         success: false,
     });
+
+    //context API for login
+
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    let { from } = location.state || { from: { pathname: '/' } };
+
+
 
     //google provider
 
@@ -132,6 +146,13 @@ const Login = () => {
                     newUserInfo.error = '';
                     newUserInfo.success = true;
                     setUser(newUserInfo);
+                    //set name in state for use context
+                    setLoggedInUser(newUserInfo);
+
+
+                    navigate(from, { replace: true });
+
+
                     console.log('sign in user info', res.user);
                 })
                 .catch((error) => {
@@ -157,7 +178,7 @@ const Login = () => {
         const auth = getAuth();
         updateProfile(auth.currentUser, {
             //display name is for user profile in firebase
-            displayName: name, 
+            displayName: name,
             // photoURL: "https://example.com/jane-q-user/profile.jpg"
         }).then(() => {
             console.log('Name updated');
@@ -174,7 +195,7 @@ const Login = () => {
                 <button style={{ padding: '10px' }} onClick={signInHandler}>Sign in with Google</button>
             }
 
-             <button style={{ marginLeft: '10px', padding: '10px' }} >Sign in with Facebook</button>
+            <button style={{ marginLeft: '10px', padding: '10px' }} >Sign in with Facebook</button>
 
 
             {/* if user is signed in with google then show user info*/}
